@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+code = '''<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -20,6 +20,7 @@
             --border-color: #222634;
             --discord-color: #5865f2;
             --whatsapp-color: #25d366;
+            --whatsapp-hover: #1ebd56;
         }
 
         * {
@@ -129,6 +130,31 @@
             margin: 0 auto 35px;
         }
 
+        /* Pay Later Highlight Banner */
+        .pay-after-banner {
+            background: rgba(0, 255, 102, 0.1);
+            border: 2px dashed var(--accent-green);
+            border-radius: 16px;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            text-align: center;
+        }
+
+        .pay-after-banner h3 {
+            color: var(--accent-green);
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .pay-after-banner p {
+            color: #ffffff;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
         /* Video Wrapper */
         .video-container {
             max-width: 800px;
@@ -152,13 +178,16 @@
             border: none;
         }
 
-        /* CTA Button */
-        .btn-cta {
-            display: inline-block;
+        /* WhatsApp CTA Button */
+        .btn-whatsapp-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
             width: 100%;
-            max-width: 450px;
-            background: linear-gradient(180deg, #00ff66 0%, #00cc52 100%);
-            color: #000;
+            max-width: 500px;
+            background: linear-gradient(180deg, #25d366 0%, #1ebd56 100%);
+            color: #fff;
             font-size: 1.25rem;
             font-weight: 900;
             text-decoration: none;
@@ -167,15 +196,22 @@
             text-align: center;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            box-shadow: 0 10px 30px var(--accent-green-glow);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
             transition: all 0.3s ease;
             cursor: pointer;
             border: none;
         }
 
-        .btn-cta:hover {
+        .btn-whatsapp-cta:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 255, 102, 0.4);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+            background: linear-gradient(180deg, #28e16f 0%, #20cb5d 100%);
+        }
+
+        .btn-whatsapp-cta svg {
+            width: 28px;
+            height: 28px;
+            fill: #fff;
         }
 
         .guarantee-subtext {
@@ -412,7 +448,7 @@
             color: var(--text-muted);
         }
 
-        /* Offer Box (Pricing) */
+        /* Offer Box (WhatsApp Access Section) */
         .pricing-section {
             padding: 80px 0;
             text-align: center;
@@ -420,12 +456,12 @@
 
         .pricing-card {
             background: linear-gradient(180deg, #141722 0%, #0d0f17 100%);
-            border: 2px solid var(--accent-green);
+            border: 2px solid var(--whatsapp-color);
             border-radius: 24px;
-            max-width: 550px;
+            max-width: 580px;
             margin: 0 auto;
             padding: 40px 30px;
-            box-shadow: 0 0 50px rgba(0, 255, 102, 0.15);
+            box-shadow: 0 0 50px rgba(37, 211, 102, 0.15);
             position: relative;
         }
 
@@ -434,7 +470,7 @@
             top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--accent-green);
+            background: var(--whatsapp-color);
             color: #000;
             font-weight: 900;
             padding: 6px 20px;
@@ -444,24 +480,23 @@
         }
 
         .price-tag {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 900;
-            color: #fff;
+            color: var(--accent-green);
             margin: 20px 0 5px;
         }
 
-        .price-tag span {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
         .price-sub {
-            color: var(--accent-green);
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 30px;
+            color: var(--accent-yellow);
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            background: rgba(255, 204, 0, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 204, 0, 0.3);
         }
 
         .checklist {
@@ -481,7 +516,7 @@
         .checklist-item svg {
             width: 20px;
             height: 20px;
-            fill: var(--accent-green);
+            fill: var(--whatsapp-color);
             flex-shrink: 0;
             margin-top: 2px;
         }
@@ -592,7 +627,7 @@
         @media (max-width: 768px) {
             .hero h1 { font-size: 1.8rem; }
             .platforms-grid { grid-template-columns: 1fr; }
-            .btn-cta { font-size: 1.05rem; padding: 16px 20px; }
+            .btn-whatsapp-cta { font-size: 1.05rem; padding: 16px 20px; }
         }
     </style>
 </head>
@@ -619,17 +654,26 @@
             
             <p class="subtitle">Aprenda na prática, receba suporte diário, participe de calls ao vivo e saia do CLT junto com uma comunidade unida!</p>
 
+            <!-- Highlight Banner: Profit First, Pay Later -->
+            <div class="pay-after-banner">
+                <h3>💰 PRIMEIRO VOCÊ LUCRA, DEPOIS VOCÊ PAGA!</h3>
+                <p>Aqui o compromisso é real: entre no grupo, aplique nossas estratégias, coloque dinheiro no bolso e SÓ DEPOIS pague pelo seu acesso.</p>
+            </div>
+
             <!-- Video Section -->
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video de Apresentacao Network dos Irmaos" allowfullscreen></iframe>
             </div>
 
-            <a href="#oferta" class="btn-cta">QUERO SER UM IRMÃO AGORA</a>
+            <a href="https://chat.whatsapp.com/SEU_LINK_DO_GRUPO_AQUI" target="_blank" class="btn-whatsapp-cta">
+                <svg viewBox="0 0 24 24"><path d="M12.031 2c-5.517 0-9.997 4.48-9.997 9.998 0 2.137.672 4.116 1.817 5.74L2 22l4.417-1.782c1.571.983 3.424 1.558 5.614 1.558 5.517 0 9.997-4.48 9.997-9.998 0-5.519-4.48-9.998-9.997-9.998zm0 17.848c-1.897 0-3.606-.554-5.062-1.503l-.362-.236-2.613 1.054.839-2.548-.258-.387a7.922 7.922 0 01-1.396-4.23c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8.002-8 8.002z"/><path d="M15.823 13.882c-.255-.128-1.508-.744-1.741-.829-.234-.085-.404-.128-.574.128s-.659.829-.808.999c-.149.17-.298.191-.553.064s-1.077-.397-2.052-1.267c-.759-.677-1.272-1.514-1.421-1.769s-.016-.393.111-.52c.115-.115.255-.298.383-.447s.17-.255.255-.425c.085-.17.043-.319-.021-.447s-.574-1.382-.787-1.892c-.207-.497-.419-.43-.574-.438l-.489-.009c-.17 0-.447.064-.68.319s-.893.829-.893 2.02 1.021 2.339 1.163 2.531c.142.191 2.01 3.068 4.869 4.301.68.293 1.21.468 1.624.599.683.217 1.305.186 1.797.112.548-.083 1.508-.617 1.721-1.212c.213-.595.213-1.106.149-1.212-.064-.106-.234-.17-.489-.298z"/></svg>
+                ENTRAR NO GRUPO DO WHATSAPP GRÁTIS
+            </a>
 
             <div class="guarantee-subtext">
-                <span>🔒 Compra Segura</span>
                 <span>⚡ Acesso Imediato</span>
-                <span>🛡️ 7 Dias de Garantia</span>
+                <span>💬 Grupo 100% Gratuito Para Entrar</span>
+                <span>🤝 Lucre Primeiro, Pague Depois</span>
             </div>
         </div>
     </section>
@@ -653,7 +697,7 @@
                 <div class="card">
                     <div class="card-icon">🚀</div>
                     <h3>Sonha em Sair do CLT</h3>
-                    <p>Quer fazer dinheiro com marketing digital e construir a própria liberdade financeira.</p>
+                    <p>Quer fazer dinheiro com marketing digital e construir a própria liberdade financeira sem risco inicial.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">🤝</div>
@@ -683,7 +727,7 @@
         <div class="platforms-grid">
             <div class="platform-box whatsapp">
                 <h3>💬 Grupo no WhatsApp</h3>
-                <p>Conexão em tempo real, troca de ideias diária, dúvidas respondidas rápido e parceria constante.</p>
+                <p>Conexão em tempo real, troca de ideias diária, suporte direto e estratégias gratuitas para você lucrar primeiro.</p>
             </div>
             <div class="platform-box discord">
                 <h3>🎙️ Servidor no Discord</h3>
@@ -764,47 +808,49 @@
         </div>
     </section>
 
-    <!-- Pricing / Offer Section -->
+    <!-- Pricing / WhatsApp Access Section -->
     <section id="oferta" class="pricing-section">
         <div class="container">
             <div class="pricing-card">
-                <div class="pricing-badge">LOTE 2 ENCERRANDO</div>
+                <div class="pricing-badge">ACESSO GRATUITO INICIAL</div>
                 
                 <h3 style="font-size: 1.5rem; margin-top: 15px; color: #fff;">Network dos Irmãos®</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">Taxa Única • Sem Mensalidade</p>
-
-                <div class="price-tag">R$ 37 <span>à vista</span></div>
-                <div class="price-sub">PRÓXIMO LOTE LIBERADO EM BREVE POR R$ 57</div>
+                
+                <div class="price-tag">ENTRADA ZERO</div>
+                <div class="price-sub">🔥 PRIMEIRO VOCÊ LUCRA COM A GENTE • DEPOIS VOCÊ PAGA!</div>
 
                 <div class="checklist">
                     <div class="checklist-item">
                         <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                        <span>Entrada na Área de Membros Secreta</span>
+                        <span>Acesso imediato e 100% GRATUITO ao grupo do WhatsApp</span>
                     </div>
                     <div class="checklist-item">
                         <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                        <span>Servidor FECHADO no Discord dos Irmãos</span>
+                        <span>Aprenda métodos para colocar dinheiro no bolso sem pagar nada antes</span>
                     </div>
                     <div class="checklist-item">
                         <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                        <span>Grupo Exclusivo no WhatsApp</span>
+                        <span>Networking direto com irmãos mais experientes</span>
                     </div>
                     <div class="checklist-item">
                         <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                        <span>Acesso livre a todas as Calls gravadas e ao vivo</span>
+                        <span>Só contribua depois que você tiver obtido resultados reais</span>
                     </div>
                 </div>
 
                 <div class="bonus-box">
-                    <h5>🎁 BÔNUS DE ENTRADA GRÁTIS:</h5>
-                    <div class="bonus-item">✓ Pack com +70 Criativos Prontos para Anúncios</div>
+                    <h5>🎁 BÔNUS DE ENTRADA NO GRUPO:</h5>
+                    <div class="bonus-item">✓ Pack com +70 Criativos Prontos liberados no grupo</div>
                     <div class="bonus-item">✓ 11 VSLs Prontas para Páginas de Vendas</div>
-                    <div class="bonus-item">✓ Pack PLR em Espanhol para Vender na Gringa</div>
+                    <div class="bonus-item">✓ Suporte diário com os irmãos</div>
                 </div>
 
-                <a href="https://pay.kiwify.com.br" class="btn-cta" style="width:100%;">QUERO SER UM IRMÃO</a>
+                <a href="https://chat.whatsapp.com/SEU_LINK_DO_GRUPO_AQUI" target="_blank" class="btn-whatsapp-cta" style="width:100%;">
+                    <svg viewBox="0 0 24 24"><path d="M12.031 2c-5.517 0-9.997 4.48-9.997 9.998 0 2.137.672 4.116 1.817 5.74L2 22l4.417-1.782c1.571.983 3.424 1.558 5.614 1.558 5.517 0 9.997-4.48 9.997-9.998 0-5.519-4.48-9.998-9.997-9.998zm0 17.848c-1.897 0-3.606-.554-5.062-1.503l-.362-.236-2.613 1.054.839-2.548-.258-.387a7.922 7.922 0 01-1.396-4.23c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8.002-8 8.002z"/><path d="M15.823 13.882c-.255-.128-1.508-.744-1.741-.829-.234-.085-.404-.128-.574.128s-.659.829-.808.999c-.149.17-.298.191-.553.064s-1.077-.397-2.052-1.267c-.759-.677-1.272-1.514-1.421-1.769s-.016-.393.111-.52c.115-.115.255-.298.383-.447s.17-.255.255-.425c.085-.17.043-.319-.021-.447s-.574-1.382-.787-1.892c-.207-.497-.419-.43-.574-.438l-.489-.009c-.17 0-.447.064-.68.319s-.893.829-.893 2.02 1.021 2.339 1.163 2.531c.142.191 2.01 3.068 4.869 4.301.68.293 1.21.468 1.624.599.683.217 1.305.186 1.797.112.548-.083 1.508-.617 1.721-1.212c.213-.595.213-1.106.149-1.212-.064-.106-.234-.17-.489-.298z"/></svg>
+                    ENTRAR NO GRUPO DO WHATSAPP
+                </a>
 
-                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 15px;">🔒 7 dias de garantia incondicional. Reembolso imediato sem perguntas.</p>
+                <p style="font-size: 0.85rem; color: var(--accent-green); font-weight: 700; margin-top: 15px;">🤝 Risco Zero: Você só paga após fazer suas primeiras vendas!</p>
             </div>
         </div>
     </section>
@@ -813,16 +859,16 @@
     <section class="table-section">
         <div class="container">
             <div class="section-header">
-                <h2>⚡ Irmãos Recém Chegados</h2>
-                <p style="color: var(--text-muted);">Membros que acabaram de garantir a vaga:</p>
+                <h2>⚡ Irmãos Recém Chegados no Grupo</h2>
+                <p style="color: var(--text-muted);">Membros que acabaram de entrar no grupo do WhatsApp:</p>
             </div>
 
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>Data/Hora</th>
-                            <th>Valor</th>
+                            <th>Data/Hora Entrada</th>
+                            <th>Status</th>
                             <th>Nome</th>
                             <th>Estado</th>
                             <th>Skills / Habilidades</th>
@@ -831,35 +877,35 @@
                     <tbody>
                         <tr>
                             <td>Hoje, 19:45</td>
-                            <td style="color:var(--accent-green)">R$ 37</td>
+                            <td style="color:var(--accent-green); font-weight: bold;">Membro Ativo</td>
                             <td>Carlos Henrique</td>
                             <td>SP</td>
                             <td>Automação N8N</td>
                         </tr>
                         <tr>
                             <td>Hoje, 19:10</td>
-                            <td style="color:var(--accent-green)">R$ 37</td>
+                            <td style="color:var(--accent-green); font-weight: bold;">Membro Ativo</td>
                             <td>Júlia F.</td>
                             <td>AM</td>
                             <td>Design Gráfico, Web Design</td>
                         </tr>
                         <tr>
                             <td>Hoje, 18:20</td>
-                            <td style="color:var(--accent-green)">R$ 37</td>
+                            <td style="color:var(--accent-green); font-weight: bold;">Membro Ativo</td>
                             <td>Rômulo (ROM)</td>
                             <td>MG</td>
                             <td>Kawai, Cash on Delivery</td>
                         </tr>
                         <tr>
                             <td>Hoje, 17:30</td>
-                            <td style="color:var(--accent-green)">R$ 37</td>
+                            <td style="color:var(--accent-green); font-weight: bold;">Membro Ativo</td>
                             <td>Tiago Ads</td>
                             <td>Portugal</td>
                             <td>Desenvolvedor Web, Vibe Coder</td>
                         </tr>
                         <tr>
                             <td>Hoje, 16:20</td>
-                            <td style="color:var(--accent-green)">R$ 37</td>
+                            <td style="color:var(--accent-green); font-weight: bold;">Membro Ativo</td>
                             <td>Ana Clara</td>
                             <td>RJ</td>
                             <td>Iniciante Total</td>
@@ -877,23 +923,23 @@
         </div>
 
         <div class="faq-item active">
-            <div class="faq-question">O que é o Network dos Irmãos? <span>▲</span></div>
-            <div class="faq-answer">O NDI é uma comunidade fechada de marketing digital onde compartilhamos estratégias reais, materiais de apoio, criativos e networking direto sem enrolação.</div>
+            <div class="faq-question">Como funciona a entrada gratuita? <span>▲</span></div>
+            <div class="faq-answer">Você entra no nosso grupo do WhatsApp sem pagar nada antes. Lá dentro compartilhamos o passo a passo de como vender no marketing digital.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Quando eu preciso pagar? <span>▼</span></div>
+            <div class="faq-answer">Você só vai pagar pelo acesso completo após aplicar o método, fazer suas primeiras vendas e colocar dinheiro no bolso! Risco zero para você.</div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">Para quem é indicado? <span>▼</span></div>
-            <div class="faq-answer">Para qualquer pessoa que queira fazer dinheiro no marketing digital e sair do CLT, desde o absoluto iniciante até quem já vende e quer escalar.</div>
+            <div class="faq-answer">Para qualquer pessoa que queira fazer dinheiro no marketing digital e sair do CLT, desde o absoluto iniciante até quem já vende.</div>
         </div>
 
         <div class="faq-item">
-            <div class="faq-question">É mensalidade? <span>▼</span></div>
-            <div class="faq-answer">Não! Trata-se de uma taxa única de apenas R$37 (no lote atual). Você paga uma vez e tem acesso à comunidade.</div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-question">Como recebo o acesso? <span>▼</span></div>
-            <div class="faq-answer">Assim que o pagamento for confirmado, você receberá um e-mail automático com o link de acesso direto ao Discord e ao grupo do WhatsApp.</div>
+            <div class="faq-question">Como acesso o grupo agora? <span>▼</span></div>
+            <div class="faq-answer">Basta clicar em qualquer um dos botões "ENTRAR NO GRUPO DO WHATSAPP" nesta página para ser redirecionado imediatamente ao grupo oficial.</div>
         </div>
     </section>
 
@@ -918,3 +964,9 @@
     </script>
 </body>
 </html>
+'''
+
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(code)
+
+print("Arquivo index.html atualizado com sucesso!")
